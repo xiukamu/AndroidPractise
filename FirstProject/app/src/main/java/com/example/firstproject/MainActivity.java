@@ -1,9 +1,6 @@
 package com.example.firstproject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -13,13 +10,15 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout frameLayout = new FrameLayout(this);
-        frameLayout.setBackgroundResource(R.mipmap.qr);
+        //frameLayout.setBackgroundResource(R.mipmap.qr);
         setContentView(frameLayout);
         TextView textView = new TextView(this);
         textView.setText("开始游戏");
@@ -29,22 +28,28 @@ public class MainActivity extends AppCompatActivity {
         params.gravity = Gravity.CENTER;
         textView.setLayoutParams(params);
         textView.setOnClickListener(new View.OnClickListener() {
+            //            @Override
+//            public  void  onClick(View v) {
+//                new AlertDialog.Builder(MainActivity.this).setTitle("系统提示").setMessage("游戏又风险").setPositiveButton("确定",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                            }
+//                        }).setNegativeButton("退出", new DialogInterface.OnClickListener(){
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        //Log.i("1234");
+//                        finish();
+//                    }
+//                }).show();
+//            }
             @Override
             public  void  onClick(View v) {
-                new AlertDialog.Builder(MainActivity.this).setTitle("系统提示").setMessage("游戏又风险").setPositiveButton("确定",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                Log.i("heheeeheh");
-                            }
-                        }).setNegativeButton("退出", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Log.i("1234");
-                        finish();
-                    }
-                }).show();
+                Intent intent = new Intent(MainActivity.this, AudioPlayActivity.class);
+                startActivity(intent);
             }
+
+
         });
         frameLayout.addView(textView);
     }
